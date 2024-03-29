@@ -12,7 +12,7 @@ const onGuestGenerated = (callback: TCallback) => {
 };
 
 const onPeepPickup = (callback: TCallback) => {
-  context.subscribe<PeepPickupArgs>("action.execute", (data) => {
+  return context.subscribe<PeepPickupArgs>("action.execute", (data) => {
     if (data.action === "peeppickup" && data.args.type === 0) {
       callback(data);
     }
@@ -20,8 +20,10 @@ const onPeepPickup = (callback: TCallback) => {
 };
 
 const onPeepSetDown = (callback: TCallback) => {
-  context.subscribe<PeepPickupArgs>("action.execute", (data) => {
+  return context.subscribe<PeepPickupArgs>("action.execute", (d) => {
+    const data = { ...d };
     if (data.action === "peeppickup" && data.args.type === 1) {
+      data.action = "peepsetdown";
       callback(data);
     }
   });

@@ -17,7 +17,7 @@ export const onChangeLandscape = <T extends LandscapeAction>(
       return onSurfaceSetStyle(callback);
     default:
       return context.subscribe("action.execute", (data) => {
-        if (data.action === sceneryAction) {
+        if (data.action === sceneryAction && data.args.flags < 0) {
           callback(data);
         }
       });

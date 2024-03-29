@@ -59,7 +59,7 @@ const subscribe = (event: ExtendedActionType, callback: TCallback) => {
   } else if (eventIsInSection(event, parkActions)) {
     return parkHooks.onParkAction(event as ParkAction, callback);
   } else {
-    throw new Error(`Event ${event} not found`);
+    throw new Error(`Event ${event} is not in any section`);
   }
 };
 
